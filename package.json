@@ -1,7 +1,6 @@
 {
   "name": "SheetStorm",
   "version": "0.0.1",
-  "main": "index.js",
   "readmeFilename": "README.md",
   "description": "Read and edit Google Sheets",
   "main": "SheetStorm.js",
