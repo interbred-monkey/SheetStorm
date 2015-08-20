@@ -1,0 +1,38 @@
+{
+  "name": "google_spreadsheet_editor",
+  "version": "0.0.1",
+  "main": "index.js",
+  "readmeFilename": "README.md",
+  "description": "Read and edit Google Sheets",
+  "main": "google_sheets.js",
+  "dependencies": {
+    "underscore":"1.7.0",
+    "async": "0.9.0",
+    "google-oauth-jwt": "0.1.4",
+    "xml2json": "0.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/interbred-monkey/SheetStorm.git"
+  },
+  "keywords": [
+    "google",
+    "sheets",
+    "spreadsheets",
+    "node.js",
+    "node",
+    "javascript",
+    "edit",
+    "editor",
+    "read",
+    "reader",
+    "sheetstorm",
+    "sheet",
+    "storm"
+  ],
+  "author": "Interbred Monkey",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/interbred-monkey/SheetStorm/issues"
+  }
+}
