@@ -1,10 +1,10 @@
 {
-  "name": "google_spreadsheet_editor",
+  "name": "SheetStorm",
   "version": "0.0.1",
   "main": "index.js",
   "readmeFilename": "README.md",
   "description": "Read and edit Google Sheets",
-  "main": "google_sheets.js",
+  "main": "SheetStorm.js",
   "dependencies": {
     "underscore":"1.7.0",
     "async": "0.9.0",
