@@ -9,6 +9,9 @@ SheetStorm is available through an installation from npm
 npm install sheetstorm
 ```
 
+## Authentication
+SheetStorm currently uses service accounts to authenticate with the Google sheets API, to setup a sevice account you need to log in to the [Google developers console](https://console.developers.google.com) (https://console.developers.google.com). Once the account has been created you will need to share the spreadsheet with the service account so it has edit access.
+
 ## Initialisation
 
 To use this library simply require the module and intialise the connection to Google passing in the required params:
