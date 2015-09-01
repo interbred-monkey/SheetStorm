@@ -49,6 +49,7 @@ Functionality is broke down into the following subheadings:
 ### Rows
 * [rows](#rows) - Return a list of the worksheets rows
 * [addRow](#rows-add) - Add a row to the end of the worksheet
+* [deleteRow](#rows-delete) - Delete a row from the worksheet
 
 ### Cells
 * [cells](#cells) - Return a list of the worksheets cells
@@ -128,7 +129,7 @@ var params = {
   spreadsheet_id: "8e98da-cabdia372837yu8we8vndsbvi483je"
 }
 
-ss.worksheetMeta(function(err, metadata) {
+ss.worksheetMeta(params, function(err, metadata) {
 
   if (err) {
 
@@ -190,7 +191,7 @@ var params = {
   rows: 25
 }
 
-ss.editWorksheetMeta(function(err) {
+ss.editWorksheetMeta(params, function(err) {
 
   if (err) {
 
@@ -220,7 +221,7 @@ var params = {
   rows: 25
 }
 
-ss.addWorksheet(function(err) {
+ss.addWorksheet(params, function(err) {
 
   if (err) {
 
@@ -248,7 +249,7 @@ var params = {
   worksheet_id: "od6"
 }
 
-ss.deleteWorksheet(function(err) {
+ss.deleteWorksheet(params, function(err) {
 
   if (err) {
 
@@ -282,7 +283,7 @@ var params = {
   worksheet_id: "od6"
 }
 
-ss.rows(function(err, rows) {
+ss.rows(params, function(err, rows) {
 
   if (err) {
 
@@ -302,7 +303,7 @@ var params = {
   worksheet_name: "test"
 }
 
-ss.rows(function(err, rows) {
+ss.rows(params, function(err, rows) {
 
   if (err) {
 
@@ -401,7 +402,7 @@ var params = {
   }
 }
 
-ss.addRow(function(err) {
+ss.addRow(params, function(err) {
 
   if (err) {
 
@@ -433,7 +434,7 @@ var params = {
   worksheet_id: "od6"
 }
 
-ss.cells(function(err, cells) {
+ss.cells(params, function(err, cells) {
 
   if (err) {
 
@@ -544,7 +545,7 @@ var params = {
 
 }
 
-ss.editCell(function(err) {
+ss.editCell(params, function(err) {
 
   if (err) {
 
@@ -581,7 +582,7 @@ var params = {
   worksheet_id: "od6"
 }
 
-ss.entries(function(err, entries) {
+ss.entries(params, function(err, entries) {
 
   if (err) {
 
