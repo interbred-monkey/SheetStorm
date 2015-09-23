@@ -1,5 +1,4 @@
 var _         = require('underscore'),
-    //moment    = require('moment'),
     xml2json  = require('xml2json');
 
 var googleFormat = function() {}
@@ -294,13 +293,6 @@ googleFormat.prototype.addRowXML = function(_params) {
 
   }
 
-  // if it's only an object then add it to an array
-  if (_.isObject(_params)) {
-
-    _params = [_params];
-
-  }
-
   // loop through and make some entries
   for (var p in _params) {
 
@@ -310,6 +302,9 @@ googleFormat.prototype.addRowXML = function(_params) {
 
     }
 
+    // make a single entry
+    var entry = [];
+
     // loop through the fields to make an cell entry
     for (var pk in _params[p]) {
 
@@ -318,14 +313,16 @@ googleFormat.prototype.addRowXML = function(_params) {
                            .replace(/<\$value\$>/g, _params[p][pk]);
 
       // add it to the list of entries
-      entries.push(e);
+      entry.push(e);
 
     }
+
+    entries.push(addGSXEntryContent(entry.join('\n')));
     
   }
 
-  // send back the composed string
-  return addGSXEntryContent(entries.join('\n'));
+  // send back the list of entries
+  return entries;
 
 }
 

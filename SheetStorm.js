@@ -304,37 +304,68 @@ SheetStorm.prototype.editWorksheetMeta = function(_params, callback) {
 
 SheetStorm.prototype.addRow = function(_params, callback) {
 
-  var _instance = this;
+  var _instance = this,
+      actions   = [];
 
   if (!validate.addRow(_params)) return callback("Incorrect parameters provided, please refer to the documentation");
 
-  // make some xml for us to send
-  var xml = google_format.addRowXML(_params.row);
+  if (!_.isArray(_params.row)) {
 
-  // make them into some proper parameters
-  var params = {
-    method: "POST",
-    url: "https://spreadsheets.google.com/feeds/list/" + _params.spreadsheet_id + "/" + _params.worksheet_id + "/private/full",
-    opts: {
-      body: xml
-    }
+    _params.row = [_params.row];
+
   }
 
-  _instance.makeRequest(params, function(err, data) {
+  // make some xml for us to send
+  var xml_entries = google_format.addRowXML(_params.row);
 
-    if (!_.isNull(err)) {
+  if (!_.isArray(xml_entries) || _.isEmpty(xml_entries)) {
 
-      if (_instance._debug === true) {
+    return callback("Unable to determine rows to update spreadsheet");
 
-        console.log("Error:\n", err, data);
+  }
 
-      }
+  for (var xe in xml_entries) {
 
-      return callback("Unable to add data to the worksheet");
+    (function(xml) {
 
-    }
+      actions.push(function(cb) {
 
-    return callback(null);
+        // make them into some proper parameters
+        var params = {
+          method: "POST",
+          url: "https://spreadsheets.google.com/feeds/list/" + _params.spreadsheet_id + "/" + _params.worksheet_id + "/private/full",
+          opts: {
+            body: xml
+          }
+        }
+
+        _instance.makeRequest(params, function(err, data) {
+
+          if (!_.isNull(err)) {
+
+            if (_instance._debug === true) {
+
+              console.log("Error:\n", err, data);
+
+            }
+
+            return cb("Unable to add data to the worksheet");
+
+          }
+
+          return cb(null, data);
+
+        })
+
+      })
+
+    })(xml_entries[xe])
+
+  }
+
+  async.series(actions, function(err) {
+
+    return callback(err || null);
 
   })
 

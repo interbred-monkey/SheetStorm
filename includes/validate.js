@@ -170,7 +170,7 @@ validate.prototype.addRow = function(_params) {
 
   }
 
-  if (!_.isObject(_params.row) || _.isEmpty(_params.row)) {
+  if ((!_.isObject(_params.row) && !_.isArray(_params.row)) || _.isEmpty(_params.row)) {
 
     if (this._debug) {
 
